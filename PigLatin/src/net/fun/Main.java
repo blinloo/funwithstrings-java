@@ -1,4 +1,5 @@
 package net.fun;
+//blinloo
 
 import java.util.Random;
 import java.util.Scanner;
@@ -22,7 +23,8 @@ public class Main {
                     System.out.println("You text case randomised: " + randomiseString(getUserString()));
                     break;
                 case 3: //Pig Latin
-
+                    System.out.println("Enter text to translate into Pig Latin");
+                    System.out.println("You text in Pig Latin: " + pigLatinify(getUserString()));
                     break;
                 case 0: break;//exit
                 default: System.out.println("Not a valid option, please select an option from the menu"); break;
@@ -47,12 +49,29 @@ public class Main {
         return inputNum;
     }
 
+    private static int countWords(String inputString)
+    {
+        int length = inputString.length() - 1;
+        String testString = (inputString.toLowerCase()).concat(" ");
+            //puts in lower case to avoid counting confusion and adds a space to ensure last word is counted
+        int count = 0;
+        char prev = ' ';
+        for (int i= 0; i <= length; i++)
+        {
+            if ((testString.charAt(i) == ' ') && (prev != ' '))
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+
     private static int menuOptions()
     {
         int option = 0;
         System.out.println("Choose one of these options");
-        System.out.println("1 - Reverse a string                2 - Randomise character cases");
-        System.out.println("3 - Translate into Pig Latin        4 - Something exciting and crazy!");
+        System.out.println("1 - Reverse a string                   2 - Randomise character cases");
+        System.out.println("3 - Translate into Pig Latin(simple)   4 - Something exciting and crazy!");
         System.out.println("0 - Exit");
         option = getUserInt(); //calls method to get integer input from user
         return option;
@@ -67,6 +86,7 @@ public class Main {
             //Steps through all characters in the string and
             outputArray[length - i] = inputString.charAt(i);
         }
+
         String outputString = new String(outputArray);
         return outputString;
     }
@@ -87,6 +107,22 @@ public class Main {
                 outputArray[i] = inputString.toLowerCase().charAt(i);
             }
         }
+
+        String outputString = new String(outputArray);
+        return outputString;
+    }
+
+    private static String pigLatinify(String inputString)
+    {
+        char[] outputArray = inputString.toCharArray();
+        int length = inputString.length();
+        int wordNum = countWords(inputString);
+
+        for (int i = 0; i < wordNum; i++)
+        {
+            if (inputString.charAt(i)
+        }
+
         String outputString = new String(outputArray);
         return outputString;
     }
