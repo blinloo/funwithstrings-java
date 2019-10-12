@@ -144,7 +144,7 @@ public class Main {
         {
             if (inputString.charAt(0) != ' ')
             {
-                if (checkIfVowel(inputString.charAt(0))) //if first char is a vowel
+                if (checkIfVowel(inputString.charAt(0))) //if first char is a vowel, add way/ay/yay to the end
                 {
                     outputString.concat("way");
                 } else //if first char is consonant
