@@ -16,15 +16,19 @@ public class Main {
             switch (option) {
                 case 1: //Reverse string
                     System.out.println("Enter text you would like to reverse");
-                    System.out.println("You text reversed: " + reverseString(getUserString()));
+                    System.out.println("Your text reversed: " + reverseString(getUserString()));
                     break;
                 case 2: //Randomise character case
                     System.out.println("Enter text to randomise case of");
-                    System.out.println("You text case randomised: " + randomiseString(getUserString()));
+                    System.out.println("Your text case randomised: " + randomiseString(getUserString()));
                     break;
                 case 3: //Pig Latin
                     System.out.println("Enter text to translate into Pig Latin");
-                    System.out.println("You text in Pig Latin: " + pigLatinify(getUserString()));
+                    System.out.println("Your text in Pig Latin: " + pigLatinify(getUserString()));
+                    break;
+                case 4: //Number of words
+                    System.out.println("Enter text to calculate number of words");
+                    System.out.println("Number of words: " + countWords(getUserString()));
                     break;
                 case 0: break;//exit
                 default: System.out.println("Not a valid option, please select an option from the menu"); break;
@@ -66,14 +70,30 @@ public class Main {
         return count;
     }
 
+    private static boolean checkIfVowel(char c) //Checks if entered char is a vowel
+    {
+        char [] vowelArray = new char[] {'a', 'e', 'i', 'o', 'u'};
+        boolean isVowel = false;
+        c = Character.toLowerCase(c); //ensures character inputted is lower case
+
+        for (int j = 0; j < vowelArray.length; j++) //check if vowel
+        {
+            if (c == vowelArray[j])
+            {
+                isVowel = true;
+            }
+        }
+        return isVowel;
+    }
+
     private static int menuOptions()
     {
         int option = 0;
         System.out.println("Choose one of these options");
         System.out.println("1 - Reverse a string                   2 - Randomise character cases");
-        System.out.println("3 - Translate into Pig Latin(simple)   4 - Something exciting and crazy!");
+        System.out.println("3 - Translate into Pig Latin(simple)   4 - Check number of words");
         System.out.println("0 - Exit");
-        option = getUserInt(); //calls method to get integer input from user
+        option = getUserInt(); //Calls method to get integer input from user
         return option;
     }
 
@@ -115,15 +135,26 @@ public class Main {
     private static String pigLatinify(String inputString)
     {
         char[] outputArray = inputString.toCharArray();
+        String outputString = inputString;
         int length = inputString.length();
         int wordNum = countWords(inputString);
 
+
         for (int i = 0; i < wordNum; i++)
         {
-            if (inputString.charAt(i)
+            if (inputString.charAt(0) != ' ')
+            {
+                if (checkIfVowel(inputString.charAt(0))) //if first char is a vowel
+                {
+                    outputString.concat("way");
+                } else //if first char is consonant
+                {
+
+                    outputString = new String(outputArray);
+                }
+            }
         }
 
-        String outputString = new String(outputArray);
         return outputString;
     }
 }
